@@ -2,14 +2,11 @@ import React from "react";
 import * as THREE from "three";
 import { Canvas, ReactThreeFiber } from "react-three-fiber";
 import { Stars } from "./components/Stars";
-import { Center } from "./components/Center";
 import { CENTER_RADIUS, MIN_RADIUS, MAX_RADIUS } from "./constants";
-import { Asteroids } from "./components/Asteroids";
-import { Effects } from "./components/Effects";
 import { Stats } from "drei";
-import { Ship } from "./components/Ship";
 
 import "./App.scss";
+import { Entities } from "./components/Entities";
 
 type CameraProps = Partial<
     ReactThreeFiber.Object3DNode<THREE.Camera, typeof THREE.Camera> &
@@ -33,12 +30,9 @@ const App: React.FC = () => {
             >
                 <fog attach="fog" args={["black", 15, 1000]} />
                 <ambientLight />
-                <Stars />
-                <Center />
-                <Asteroids />
-                <Ship />
-                <Effects />
                 <Stats />
+                <Stars />
+                <Entities />
             </Canvas>
         </div>
     );

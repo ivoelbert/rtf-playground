@@ -1,8 +1,9 @@
+import * as THREE from "three";
 import React, { useRef, useEffect } from "react";
 import { useFrame, CanvasContext } from "react-three-fiber";
-import * as THREE from "three";
 import { CENTER_RADIUS, MAX_RADIUS, MIN_RADIUS } from "../constants";
-import { randomOrthogonalUnitVector, assertExists } from "../utils/utils";
+import { assertExists } from "../utils/utils";
+import { Vectors } from "../utils/vectorUtils";
 
 const ANG_VELOCITY = 2;
 const RAD_VELOCITY = 1;
@@ -63,5 +64,5 @@ export const Asteroid: React.FC<AsteroidProps> = ({ normalVector, isLive, dispos
 const initialTransform = (normalVector: THREE.Vector3): AsteroidTranform => ({
     ang: 0,
     rad: CENTER_RADIUS,
-    initialPosition: randomOrthogonalUnitVector(normalVector),
+    initialPosition: Vectors.randomOrthogonalUnit(normalVector),
 });

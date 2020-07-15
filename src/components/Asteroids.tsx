@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useInterval } from "../hooks/useInterval";
 import { Asteroid, AsteroidProps } from "./Asteroid";
-import { randomUnitVector, tabulate } from "../utils/utils";
+import { Arrays } from "../utils/arrayUtils";
+import { Vectors } from "../utils/vectorUtils";
 
 const MAX_ASTEROIDS = 50;
 
@@ -22,10 +23,10 @@ export type DisposeAsteroidAction = (id: number) => void;
 
 const useLiveAsteroids = (): [AsteroidProps[], SpawnAsteroidAction, DisposeAsteroidAction] => {
     const [liveAsteroids, setLiveAsteroids] = useState<Omit<AsteroidProps, "dispose">[]>(() =>
-        tabulate(MAX_ASTEROIDS, (index) => ({
+        Arrays.tabulate(MAX_ASTEROIDS, (index) => ({
             id: index,
             isLive: false,
-            normalVector: randomUnitVector(),
+            normalVector: Vectors.randomUnit(),
         }))
     );
 
@@ -37,7 +38,7 @@ const useLiveAsteroids = (): [AsteroidProps[], SpawnAsteroidAction, DisposeAster
 
         const newLiveAsteroids = [...liveAsteroids];
         newLiveAsteroids[asteroidIndex].isLive = true;
-        newLiveAsteroids[asteroidIndex].normalVector = randomUnitVector();
+        newLiveAsteroids[asteroidIndex].normalVector = Vectors.randomUnit();
 
         setLiveAsteroids(newLiveAsteroids);
     };
