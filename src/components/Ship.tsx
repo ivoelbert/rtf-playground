@@ -4,6 +4,7 @@ import { useFrame, useThree } from "react-three-fiber";
 import { assertExists } from "../utils/utils";
 import { MIN_RADIUS, MAX_RADIUS } from "../constants";
 import * as THREE from "three";
+import { Vectors } from "../utils/vectorUtils";
 
 const MOVEMENT_EPSILON = 0.00001;
 
@@ -96,7 +97,9 @@ export const Ship: React.FC = () => {
             CAMERA_INTERTIA_FACTOR
         );
         camera.position.copy(newPosition);
-        camera.up.copy(mesh.current.up);
+
+        const newUp = Vectors.lerpRotateTowards(camera.up, mesh.current.up, CAMERA_INTERTIA_FACTOR);
+        camera.up.copy(newUp);
         camera.lookAt(0, 0, 0);
     };
 

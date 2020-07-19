@@ -1,9 +1,9 @@
 import * as THREE from "three";
 import React, { useRef, useEffect } from "react";
 import { useFrame, CanvasContext } from "react-three-fiber";
-import { CENTER_RADIUS, MAX_RADIUS, MIN_RADIUS } from "../constants";
-import { assertExists } from "../utils/utils";
-import { Vectors } from "../utils/vectorUtils";
+import { CENTER_RADIUS, MAX_RADIUS, MIN_RADIUS } from "../../constants";
+import { assertExists } from "../../utils/utils";
+import { Vectors } from "../../utils/vectorUtils";
 
 const ANG_VELOCITY = 2;
 const RAD_VELOCITY = 1;
@@ -24,8 +24,9 @@ export interface AsteroidProps {
 }
 
 export const Asteroid: React.FC<AsteroidProps> = ({ normalVector, isLive, dispose }) => {
-    const mesh = useRef<THREE.Mesh>();
     const transform = useRef<AsteroidTranform>(initialTransform(normalVector));
+
+    const mesh = useRef<THREE.Mesh>();
 
     useEffect(() => {
         transform.current = initialTransform(normalVector);

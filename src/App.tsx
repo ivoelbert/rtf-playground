@@ -4,9 +4,9 @@ import { Canvas, ReactThreeFiber } from "react-three-fiber";
 import { Stars } from "./components/Stars";
 import { CENTER_RADIUS, MIN_RADIUS, MAX_RADIUS } from "./constants";
 import { Stats } from "drei";
+import { Entities } from "./components/Entities/Entities";
 
 import "./App.scss";
-import { Entities } from "./components/Entities";
 
 type CameraProps = Partial<
     ReactThreeFiber.Object3DNode<THREE.Camera, typeof THREE.Camera> &

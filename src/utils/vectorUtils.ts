@@ -28,4 +28,18 @@ export class Vectors {
 
         return new THREE.Vector3().crossVectors(vec, mostPerpendicular);
     };
+
+    static lerpRotateTowards = (
+        origin: THREE.Vector3,
+        dest: THREE.Vector3,
+        alpha: number
+    ): THREE.Vector3 => {
+        const axis = new THREE.Vector3().crossVectors(origin, dest);
+        const maxAngle = origin.angleTo(dest);
+        const angle = maxAngle * alpha;
+
+        const newVector = origin.clone();
+        newVector.applyAxisAngle(axis, angle);
+        return newVector.normalize();
+    };
 }
